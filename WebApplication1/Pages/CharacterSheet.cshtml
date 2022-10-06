@@ -1,0 +1,251 @@
+﻿@page
+@model WebApplication1.Pages.CharacterSheetModel
+@{
+    ViewData["Title"] = "NAME PLACE HOLDER";
+}
+<link rel="stylesheet" href="~/css/characterSheet.css" />
+<script src="~/js/site.js"></script>
+<body>
+    <div class="container text-center" id="heading">
+        <div class="jumbotron text-light bg-dark">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5 id="race">Tabaxi</h5><h5 id="classLevel"> Rouge 1/ Bard 2</h5><div id="level" style="display:none;">3</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn" type="button">Information</button>
+            </div>
+            <div class="col">
+                <button class="btn" type="button">Exp / Level up</button>
+            </div>
+            <div class="col">
+                <button class="btn" type="button">Quick Access</button>
+            </div>
+        </div>
+    </div>
+    <form>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                    <div class="container-fluid text-center" id="keyInfo">
+                        <div class="row p-1">
+                            <p id="maxHp">10</p>
+                            <p>/</p>
+                            <p id="minHp">10</p>
+                            <p><small>HP</small></p>
+                            <button type="button" class="btn">-</button>
+                            <button type="button" class="btn">+</button>
+                            <div class="col">
+                                <div class="dropdown">
+                                    <button type="button" class="btn float-right" id="dropdownMenuButton" data-toggle="dropdown" >:</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <button type="button" class="dropdown-item">Set Max HP</button>
+                                        <button type="button" class="dropdown-item">Long Rest</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row p-1">
+                            <div class="col">
+                                <p id="armourClass">10</p>
+                                <label class="col-form-label">Armour Class</label>
+                            </div>
+                            <div class="col">
+                                <p id="initiative">10</p>
+                                <label class="col-form-label">Initiative</label>
+                            </div>
+                            <div class="col">
+                                <p id="speed">30</p>
+                                <label class="col-form-label">Speed</label>
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col">
+                                <p id="pasPer">10</p>
+                                <label class="col-form-label">Passive Perception</label>
+                            </div>
+                            <div class="col">
+                                <p id="profBon">2</p>
+                                <label class="col-form-label">Proficiency Bonus</label>
+                            </div>
+                            <div class="col">
+                                <p id="hitDiceNum">1</p>
+                                <label class="col-form-label">Hit Dice</label>
+                                <p id="hitDiceType" style="font-size:12px;">d8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                    <div class="container text-center" id="abilityModifiers">
+                        <h6 class="form-label text-left">Ability Modifiers</h6>
+                        <hr />
+                        <div class="row">
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="strABS" placeholder="8" />
+                                <label class="col-form-label">Str</label>
+                            </div>
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="dexABS" placeholder="8" />
+                                <label class="col-form-label">Dex</label>
+                            </div>
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="conABS" placeholder="8" />
+                                <label class="col-form-label">Con</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="intABS" placeholder="8" />
+                                <label class="col-form-label">Int</label>
+                            </div>
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="wisABS" placeholder="8" />
+                                <label class="col-form-label">Wis</label>
+                            </div>
+                            <div class="col col-sm-4">
+                                <input class="form-control" type="number" id="chaABS" placeholder="8" />
+                                <label class="col-form-label">Cha</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                    <div class="container text-center" id="savingThrows">
+                        <div class="row text-left">
+                            <div class="col">
+                                <h6 class="form-label">Saving Throws</h6>
+                            </div>
+                            <div class="col">
+                                <button type="button" onclick="makeSaveCheckVis()" class="btn float-right align-content-center">
+                                    <img class="img-fluid" src="~/resources/Edit.svg" style="height: 2.5vh" />
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="strength" data="box" id="strBox" placeholder="8" style="display:none" />
+                                <p id="strDisp" data="disp" class="align-bottom">8</p>
+                                <label for="strength" class="col-form-label">Str</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="dexterity" data="box" id="dexBox" placeholder="8" style="display:none" />
+                                <p id="dexDisp" data="disp" class="align-bottom">8</p>
+                                <label for="dexterity" class="col-form-label">Dex</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="constitution" data="box" id="conBox" placeholder="8" style="display:none" />
+                                <p id="conDisp" data="disp" class="align-bottom">8</p>
+                                <label for="constitution" class="col-form-label">Con</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="intelligence" data="box" id="intBox" placeholder="8" style="display:none" />
+                                <p id="intDisp" data="disp" class="align-bottom">8</p>
+                                <label for="intelligence" class="col-form-label">Int</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="wisdom" data="box" id="wisBox" placeholder="8" style="display:none" />
+                                <p id="wisDisp" data="disp" class="align-bottom">8</p>
+                                <label for="wisdom" class="col-form-label">Wis</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="checkbox" name="charisma" data="box" id="chaBox" placeholder="8" style="display:none" />
+                                <p id="chaDisp" data="disp" class="align-bottom">8</p>
+                                <label for="charisma" class="col-form-label">Cha</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-12">
+                    <h6>Feats</h6>
+                    <hr />
+                </div>
+
+                <div class="col-12 p-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Skills</h6>
+                            </div>
+                            <div class="col">
+                                <button type="button" onclick="makeSaveCheckVis()" class="btn float-right align-content-center">
+                                    <img class="img-fluid" src="~/resources/Edit.svg" style="height: 2.5vh" />
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row text-center">
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="acrobatics" skill-used="dex">8</p><label class="col-form-label">Acrobatics</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="animalHandling" skill-used="wis">8</p><label class="col-form-label">Animal Handling</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="arcana" skill-used="int">8</p><label class="col-form-label">Arcana</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="athletics" skill-used="str">8</p><label class="col-form-label">Athletics</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="deception" skill-used="cha">8</p><label class="col-form-label">Deception</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="history" skill-used="int">8</p><label class="col-form-label">History</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="insight" skill-used="wis">8</p><label class="col-form-label">Insight</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="intimidation" skill-used="cha">8</p><label class="col-form-label">Intimidation</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="investigation" skill-used="int">8</p><label class="col-form-label">Investigation</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="medicine" skill-used="wis">8</p><label class="col-form-label">Medicine</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="nature" skill-used="int">8</p><label class="col-form-label">Nature</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="perception" skill-used="wis">8</p><label class="col-form-label">Perception</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="performance" skill-used="cha">8</p><label class="col-form-label">Performance</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="persuasion" skill-used="cha">8</p><label class="col-form-label">Persuasion</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="religion" skill-used="int">8</p><label class="col-form-label">Religion</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="slightOfHand" skill-used="dex">8</p><label class="col-form-label">Slight Of Hand</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="stealth" skill-used="dex">8</p><label class="col-form-label">Stealth</label>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <p id="survival" skill-used="wis">8</p><label class="col-form-label">Survival</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+    </form>
+</body>
+

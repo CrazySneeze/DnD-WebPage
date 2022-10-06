@@ -1,0 +1,13 @@
+﻿p {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#keyInfo label, #abilityModifiers label, #savingThrows label {
+    font-size: 14px;
+}
+
+#heading button, #keyInfo button {
+    color: #ec2127;
+    font-weight: bold;
+}
